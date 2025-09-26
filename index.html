@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Large language models (LLMs), as a novel information technology, are seeing increasing adoption in the Architecture, Engineering, and Construction (AEC) field. They have shown their potential to streamline processes throughout the building lifecycle. However, the robustness and reliability of LLMs in such a specialized and safety-critical domain remain to be evaluated. To address this challenge, this paper establishes AECBench, a comprehensive benchmark designed to quantify the strengths and limitations of current LLMs in the AEC domain. The benchmark features a five-level, cognition-oriented evaluation framework (i.e., Knowledge Memorization, Knowledge Understanding, Knowledge Reasoning, Knowledge Calculation, and Knowledge Application). Based on the framework, 23 representative evaluation tasks were defined. These tasks were derived from authentic AEC practice, with scope ranging from codes retrieval to specialized documents generation. Subsequently, a 4,800-question dataset encompassing diverse formats, including open-ended questions, was crafted primarily by engineers and validated through a two-round expert review. Furthermore, an “LLM-as-a-Judge” approach was introduced to provide a scalable and consistent methodology for evaluating complex, long-form responses leveraging expert-derived rubrics. Through the evaluation of nine LLMs, a clear performance decline across five cognitive levels was revealed.  Despite demonstrating proficiency in foundational tasks at the Knowledge Memorization and Understanding levels, the models showed significant performance deficits, particularly in interpreting knowledge from tables in building codes, executing complex reasoning and calculation, and generating domain-specific documents. Consequently, this study lays the groundwork for future research and development aimed at the robust and reliable integration of LLMs into safety-critical engineering practices."
+    />
+    <meta name="keywords" content="Large Language Models; Domain-specific Benchmark; Architecture, Engineering, and Construction (AEC); Knowledge Evaluation; Automated Evaluation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      AECBench
+    </title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="stylesheet" href="./static/css/scroll.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/app.css"/>
+    <script src="./static/js/app.js"></script>
+    <link rel="stylesheet" href="./static/css/dics.min.css"/>
+    <script src="./static/js/dics.min.js"></script>
+    <script src="./static/js/video_comparison.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+    </script>
+    <script src="./static/js/index.js"></script>
+    <script src="./static/js/zotero-meta.js"></script>
+    <script>
+      $(document).ready(function () {
+        const citations = [
+          {
+            name: "citation_title",
+            content:
+              "AECBench: A Hierarchical Benchmark for Knowledge Evaluation of Large Language Models in the AEC Field",
+          },
+          {
+            name: "citation_author",
+            content: "Liang, Chen",
+          },
+          {
+            name: "citation_author",
+            content: "Huang, Zhaoqi",
+          },
+          {
+            name: "citation_author",
+            content: "Wang, Haofen",
+          },
+          {
+            name: "citation_author",
+            content: "Chai, Fu",
+          },
+          {
+            name: "citation_author",
+            content: "Yu, Chunying",
+          },
+          {
+            name: "citation_author",
+            content: "Wei, Huanhuan",
+          },
+          {
+            name: "citation_author",
+            content: "Liu, Zhengjie",
+          },
+          {
+            name: "citation_author",
+            content: "Li, Yanpeng",
+          },
+          {
+            name: "citation_author",
+            content: "Wang, Hongjun",
+          },
+          {
+            name: "citation_author",
+            content: "Luo, Ruifeng",
+          },
+          {
+            name: "citation_author",
+            content: "Zhao, Xianzhong",
+          },
+          {
+            name: "citation_date",
+            content: "2025/9/23",
+          },
+          {
+            name: "citation_online_date",
+            content: "2025/9/23",
+          },
+          {
+            name: "citation_pdf_url",
+            content: "https://arxiv.org/pdf/2509.18776",
+          },
+          {
+            name: "citation_arxiv_id",
+            content: "2509.18776",
+          },
+          {
+            name: "citation_abstract",
+            content:
+              "Large language models (LLMs), as a novel information technology, are seeing increasing adoption in the Architecture, Engineering, and Construction (AEC) field. They have shown their potential to streamline processes throughout the building lifecycle. However, the robustness and reliability of LLMs in such a specialized and safety-critical domain remain to be evaluated. To address this challenge, this paper establishes AECBench, a comprehensive benchmark designed to quantify the strengths and limitations of current LLMs in the AEC domain. The benchmark features a five-level, cognition-oriented evaluation framework (i.e., Knowledge Memorization, Knowledge Understanding, Knowledge Reasoning, Knowledge Calculation, and Knowledge Application). Based on the framework, 23 representative evaluation tasks were defined. These tasks were derived from authentic AEC practice, with scope ranging from codes retrieval to specialized documents generation. Subsequently, a 4,800-question dataset encompassing diverse formats, including open-ended questions, was crafted primarily by engineers and validated through a two-round expert review. Furthermore, an “LLM-as-a-Judge” approach was introduced to provide a scalable and consistent methodology for evaluating complex, long-form responses leveraging expert-derived rubrics. Through the evaluation of nine LLMs, a clear performance decline across five cognitive levels was revealed.  Despite demonstrating proficiency in foundational tasks at the Knowledge Memorization and Understanding levels, the models showed significant performance deficits, particularly in interpreting knowledge from tables in building codes, executing complex reasoning and calculation, and generating domain-specific documents. Consequently, this study lays the groundwork for future research and development aimed at the robust and reliable integration of LLMs into safety-critical engineering practices.",
+          },
+        ];
+        createCitationMeta(citations);
+      });
+    </script>
+  </head>
+
+  <style>
+    button {
+      padding: 0.5em 0.75em;
+      margin: 0.4em 0.4em;
+      /* min-width: 18ch; */
+      /* max-width: 18ch; */
+      text-align: left;
+      background-color: #ddd;
+      color: #333;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    
+      @media screen and (-ms-high-contrast: active) {
+        border: 2px solid currentcolor;
+      }
+    }
+  </style>
+  <body>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title" style="font-size: 36px">
+                  AECBench: A Hierarchical Benchmark for Knowledge Evaluation of Large Language Models in the AEC Field
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Chen Liang</a ><sup>1</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Zhaoqi Huang</a ><sup>1</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Haofen Wang</a ><sup>4</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Fu Chai</a ><sup>1</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Chunying Yu</a ><sup>1</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Huanhuan Wei</a ><sup>2</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Zhengjie Liu</a ><sup>1</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Yanpeng Li</a ><sup>2</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Hongjun Wang</a ><sup>2</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Ruifeng Luo</a ><sup>1,2†</sup>,
+                </span>
+                <span class="author-block" style="font-size: 22px">
+                  <a href="">Xianzhong Zhao</a ><sup>1,3†</sup>,
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block" style="font-size: 18px"
+                  ><sup>1</sup>College of Civil Engineering, Tongji University
+                </span>
+                <span class="author-block" style="font-size: 18px"
+                  ><sup>2</sup>Arcplus Group East China Architectural Design & Research Institute Co., Ltd.
+                </span>
+                <span class="author-block" style="font-size: 18px"
+                  ><sup>3</sup>Shanghai Qi Zhi Institute
+                </span>
+                <span class="author-block" style="font-size: 18px"
+                  ><sup>4</sup>College of Design and Innovation, Tongji University
+                </span>
+              </div>
+              <div class="is-size-5 publication-authors">
+                († denotes the corresponding author)
+              </div>
+              <div class="column has-text-centered">
+                <div class="link-block">
+                  <!-- PDF Link. -->
+                  <!-- TODO -->
+                  <!-- <span class="link-block">
+                    <a
+                      href=""
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper(Coming soon)</span>
+                    </a>
+                  </span> -->
+                  <span class="link-block">
+                    <a
+                      href="https://arxiv.org/abs/2509.18776"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <!-- <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supplementary</span>
+                </a>
+              </span> -->
+                  <!-- Video Link. -->
+                  <!-- <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+                  <!-- Code Link. -->
+                  <!-- TODO -->
+                  <span class="link-block">
+                    <a
+                      href=""
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code(Coming soon)</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a
+                      href=""
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-database"></i>
+                      </span>
+                      <span>Dataset(Coming soon)</span>
+                    </a>
+                  </span>
+                  <!-- Dataset Link. -->
+                  <!-- <span class="link-block">
+                <a href="https://mega.nz/folder/jdhDnTqL#Ija678SU2Va_JJOiwqmdEg"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span> -->
+                </div>
+              </div>
+
+              <!-- <div style="font-size: 10px"> -->
+              <!--   <a href="https://www.zotero.org/" -->
+              <!--     ><b style="color: #a6212c">Z</b>otero Connector</a -->
+              <!--   > -->
+              <!--   friendly -->
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/graphical_abstract.png" alt="AECBench" />
+          <h2 class="subtitle has-text-centered" style="font-size: 16px">
+            An overview of the AECBench framework and tasks.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <ul style="list-style: none; padding-left: 0; font-size: 18px; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+            <li>🌟 <b>Hierarchical Cognitive Framework:</b> A five-level framework enabling fine-grained evaluation of LLM capabilities in AEC tasks.</li>
+            <li>🌟 <b>High-Quality Benchmark Dataset:</b> A high-quality dataset of 4,800 questions across 23 tasks reflecting real-world AEC scenarios.</li>
+            <li>🌟 <b>Automated Evaluation Pipeline:</b> An "LLM-as-a-judge" system for long-form responses, with code and data released open-source.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="columns is-centered has-text-centered" id="video">
+      <div class="column is-four-fifths">
+          <h2 class="title is-2">High-Quality Benchmark Dataset</h2>
+      </div>
+    </div>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/knowledge_cycle.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+            <b>Building lifecycle knowledge dimensions:</b> The figure illustrates the multifaceted knowledge required in this integrative paradigm, which encompasses 11 key domains and a wide range of specialized topics radiating from these central areas.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+
+          <img src="static/images/evaluation_tasks.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+             <b>Designed evaluation tasks of AECBench: </b>
+             A total of 23 tasks were involved in the evaluation framework for the various
+             cognitive levels. These tasks were all derived from real-world AEC
+             scenarios and were curated by domain engineers.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+
+          <img src="static/images/dataset_workflow.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+             <b>Workflow of constructing the dataset: </b>
+              The dataset was established through three steps: data collection, data cleaning, and datareview. The data acquisition highlights a two-round review mechanism, each individual item reviewed by a mid-level engineer and then confirmed by an expert.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <div class="columns is-centered has-text-centered" id="video">
+      <div class="column is-four-fifths">
+          <h2 class="title is-2">Evaluation</h2>
+      </div>
+    </div>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/automated_assessment.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+            <b>Automated evaluation pipeline for open-ended questions</b>
+          </h2>
+        </div>
+        <div class="hero-body">
+          <img src="static/images/one_shot.png" alt="AECBench" style="max-width:500px;"/>
+          <h2 class="subtitle has-text" style="font-size: 16px">
+             <b>One-shot example for multiple-choice questions</b>
+          </h2>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <div class="columns is-centered has-text-centered" id="video">
+      <div class="column is-four-fifths">
+          <h2 class="title is-2">Final performance</h2>
+      </div>
+    </div>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/performance_1.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+            <b>Result1: </b> Performance of models in Knowledge Memorization/ Understanding/ Reasoning/ Calculation tasks
+          </h2>
+        </div>
+      </div>
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/performance_1.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+            <b>Result2: </b>Performance of models in Knowledge Application tasks
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/decline_performance.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+            <b>Result3: </b>Performance decline in questions related to tables in codes
+          </h2>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="static/images/lowless_curve.png" alt="AECBench" />
+          <h2 class="subtitle has-text" style="font-size: 16px">
+            <b>Result4: </b>Scatter Plots with LOWESS Curves of Model Performance in Evaluation Tasks
+            <br />
+            (a) original performance of LLMs; (b) performance of DeepSeek-V3 with calibration methods
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    
+
+    
+
+
+    <div class="columns is-centered has-text-centered" id="video">
+      <div class="column is-four-fifths">
+          <h2 class="title is-2">A glimpse of AECBench</h2>
+      </div>
+    </div>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <!-- 滑动框开始 -->
+          <div class="vertical-scroll">
+            <figure class="item"><img src="static/images/examples/p1-1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p1-2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p1-3.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p2-1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p2-2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p2-4.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p3-1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p3-2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p3-3.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p4-1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p4-2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p4-3.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p4-4.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-1-1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-1-2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-1-3.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-1-4.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-2-1.1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-2-1.2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-2-1.3.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-2-2.1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-2-2.2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-2-2.3.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-3-1.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-3-2.png" alt="img"></figure>
+            <figure class="item"><img src="static/images/examples/p5-3-3.png" alt="img"></figure>
+          </div>
+          <!-- 滑动框结束 -->
+        </div>
+      </div>
+    </section>
+
+
+   
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <!-- TODO -->
+        <pre><code> @misc{liang2025aecbench,
+      title={AECBench: A Hierarchical Benchmark for Knowledge Evaluation of Large Language Models in the AEC Field}, 
+      author={Chen Liang, Zhaoqi Huang, Haofen Wang, Fu Chai, Chunying Yu, Huanhuan Wei, Zhengjie Liu, Yanpeng Li, Hongjun Wang, Ruifeng Luo, Xianzhong Zhao},
+      year={2025},
+      eprint={2509.18776},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
+</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <!-- TODO -->
+          <a class="icon-link" href="https://arxiv.org/abs/2509.18776">
+            <i class="fas fa-file-pdf"></i>
+          </a>
+            <!-- TODO -->
+          <a
+            class="icon-link"
+            href=""
+            class="external-link"
+            disabled
+          >
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      bulmaCarousel.attach("#geo-carousel", {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        infinite: true,
+      });
+      bulmaCarousel.attach("#novel-carousel", {
+        slidesToScroll: 1,
+        slidesToShow: 2,
+        infinite: true,
+      });
+      bulmaCarousel.attach("#edit-carousel", {
+        slidesToScroll: 1,
+        slidesToShow: 2,
+        infinite: true,
+      });
+    </script>
+  </body>
+</html>
