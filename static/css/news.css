@@ -1,0 +1,102 @@
+/* ========= 紧凑版 新闻框样式 ========= */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei";
+  background: #f9fafb;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 0 100px;
+}
+
+/* --- 新闻卡片框 --- */
+.news-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 12px 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.news-box:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* --- 标题栏 --- */
+.news-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #1e293b;
+}
+
+.news-title::before {
+  content: "📰";
+  font-size: 18px;
+}
+
+/* --- 新闻列表 --- */
+.news-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.news-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 4px 0; 
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.2;
+  transition: background 0.2s ease;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-item::before {
+  content: "•";
+  color: #3b82f6;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.news-item:hover {
+  background: #f1f5f9;
+}
+
+/* --- 暗色模式 --- */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a;
+    color: #f1f5f9;
+  }
+
+  .news-box {
+    background: #1e293b;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .news-title {
+    color: #f8fafc;
+  }
+
+  .news-item {
+    color: #e2e8f0;
+    border-bottom-color: #334155;
+  }
+
+  .news-item:hover {
+    background: #334155;
+  }
+}
